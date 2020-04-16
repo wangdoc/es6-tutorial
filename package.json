@@ -1,0 +1,34 @@
+{
+  "name": "es6-tutorial",
+  "version": "1.0.0",
+  "description": "《ECMAScript 6 教程》是一本开源的 JavaScript 语言教程，全面介绍 ECMAScript 6 新引入的语法特性。",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "loppo --site \"ES6 教程\" --id es6 --theme wangdoc",
+    "build-and-commit": "npm run build && npm run commit",
+    "commit": "gh-pages --dist dist --dest dist/es6 --branch master --repo git@github.com:wangdoc/website.git",
+    "chapter": "loppo chapter",
+    "server": "loppo server"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm update"
+    }
+  },
+  "keywords": [
+    "wangdoc",
+    "es6",
+    "tutorial"
+  ],
+  "author": "Ruan yifeng",
+  "license": "ICC BY-SA 4.0",
+  "dependencies": {
+    "gh-pages": "^2.2.0",
+    "husky": "^4.2.5",
+    "loppo": "latest",
+    "loppo-theme-wangdoc": "latest"
+  }
+}
