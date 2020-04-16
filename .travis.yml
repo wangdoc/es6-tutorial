@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+- 'node'
+
+branches:
+  only:
+  - master
+
+install:
+- npm ci
+# keep the npm cache around to speed up installs
+cache:
+  directories:
+  - "$HOME/.npm"
+
+script: bash ./deploy.sh
+env:
+  global:
+  - ENCRYPTION_LABEL: 29c04b622e97
+  - COMMIT_AUTHOR_EMAIL: yifeng.ruan@gmail.com

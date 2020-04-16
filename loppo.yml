@@ -6,3 +6,5 @@ customization: false
 themeDir: loppo-theme
 direction: ltr
 id: es6
+hasComments: true
+isTutorial: true
