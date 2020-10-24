@@ -28,7 +28,7 @@
   "dependencies": {
     "gh-pages": "^2.2.0",
     "husky": "^4.3.0",
-    "loppo": "latest",
+    "loppo": "^0.6.20",
     "loppo-theme-wangdoc": "^0.4.6"
   }
 }
