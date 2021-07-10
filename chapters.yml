@@ -9,6 +9,7 @@
 - array.md: 数组的扩展
 - object.md: 对象的扩展
 - object-methods.md: 对象的新增方法
+- operator.md: 运算符的扩展
 - symbol.md: Symbol
 - set-map.md: Set 和 Map 数据结构
 - proxy.md: Proxy
