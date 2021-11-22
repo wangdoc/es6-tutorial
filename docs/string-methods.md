@@ -443,10 +443,11 @@ str.replaceAll(regex, replacer)
 
 ```javascript
 const str = 'hello';
-str.at[1] // "e"
-str.at[-1] // "o"
+str.at(1) // "e"
+str.at(-1) // "o"
 ```
 
 如果参数位置超出了字符串范围，`at()`返回`undefined`。
 
 该方法来自数组添加的`at()`方法，目前还是一个第三阶段的提案，可以参考《数组》一章的介绍。
+
