@@ -615,15 +615,15 @@ Object.getPrototypeOf(rec) === Rectangle.prototype
 如果参数不是对象，会被自动转为对象。
 
 ```javascript
-// 等同于 Object.getPrototypeOf(Number(1))
+// 等同于 Object.getPrototypeOf(new Number(1))
 Object.getPrototypeOf(1)
 // Number {[[PrimitiveValue]]: 0}
 
-// 等同于 Object.getPrototypeOf(String('foo'))
+// 等同于 Object.getPrototypeOf(new String('foo'))
 Object.getPrototypeOf('foo')
 // String {length: 0, [[PrimitiveValue]]: ""}
 
-// 等同于 Object.getPrototypeOf(Boolean(true))
+// 等同于 Object.getPrototypeOf(new Boolean(true))
 Object.getPrototypeOf(true)
 // Boolean {[[PrimitiveValue]]: false}
 
