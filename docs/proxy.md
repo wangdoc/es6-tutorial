@@ -846,7 +846,7 @@ Object.keys(proxy)
 
 上面代码拦截了对于`target`对象的`Object.keys()`操作，只返回`a`、`b`、`c`三个属性之中的`a`属性。
 
-下面的例子是拦截第一个字符为下划线的属性名。
+下面的例子是拦截第一个字符不为下划线的属性名。
 
 ```javascript
 let target = {
