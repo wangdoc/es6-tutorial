@@ -397,7 +397,7 @@ import submodule from './node_modules/es-module-package/private-module.js';
 }
 ```
 
-由于`exports`字段只有支持 ES6 的 Node.js 才认识，所以可以用来兼容旧版本的 Node.js。
+由于`exports`字段只有支持 ES6 的 Node.js 才认识，所以可以用`main`字段来兼容旧版本的 Node.js。
 
 ```javascript
 {
