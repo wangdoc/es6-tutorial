@@ -464,6 +464,9 @@ regex.test('ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ') // true
 // 匹配所有空格
 \p{White_Space}
 
+// 匹配十六进制字符
+\p{Hex_Digit}
+
 // 匹配各种文字的所有字母，等同于 Unicode 版的 \w
 [\p{Alphabetic}\p{Mark}\p{Decimal_Number}\p{Connector_Punctuation}\p{Join_Control}]
 
@@ -471,7 +474,7 @@ regex.test('ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ') // true
 [^\p{Alphabetic}\p{Mark}\p{Decimal_Number}\p{Connector_Punctuation}\p{Join_Control}]
 
 // 匹配 Emoji
-/\p{Emoji_Modifier_Base}\p{Emoji_Modifier}?|\p{Emoji_Presentation}|\p{Emoji}\uFE0F/gu
+/\p{Extended_Pictographic}/u
 
 // 匹配所有的箭头字符
 const regexArrows = /^\p{Block=Arrows}+$/u;
