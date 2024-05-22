@@ -871,46 +871,6 @@ class A {
 
 上面示例中，私有属性`#foo`没有声明，就直接用于`in`运算符的判断，导致报错。
 
-子类从父类继承的私有属性，也可以使用`in`运算符来判断。
-
-```javascript
-class A {
-  #foo = 0;
-  static test(obj) {
-    console.log(#foo in obj);
-  }
-}
-
-class SubA extends A {};
-
-A.test(new SubA()) // true
-```
-
-上面示例中，`SubA`从父类继承了私有属性`#foo`，`in`运算符也有效。
-
-注意，`in`运算符对于`Object.create()`、`Object.setPrototypeOf`形成的继承，是无效的，因为这种继承不会传递私有属性。
-
-```javascript
-class A {
-  #foo = 0;
-  static test(obj) {
-    console.log(#foo in obj);
-  }
-}
-const a = new A();
-
-const o1 = Object.create(a);
-A.test(o1) // false
-A.test(o1.__proto__) // true
-
-const o2 = {};
-Object.setPrototypeOf(o2, a);
-A.test(o2) // false
-A.test(o2.__proto__) // true
-```
-
-上面示例中，对于修改原型链形成的继承，子类都取不到父类的私有属性，所以`in`运算符无效。
-
 ## 静态块
 
 静态属性的一个问题是，如果它有初始化逻辑，这个逻辑要么写在类的外部，要么写在`constructor()`方法里面。
