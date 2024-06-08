@@ -881,9 +881,7 @@ sentence.at(100) // undefined
 
 ## 实例方法：toReversed()，toSorted()，toSpliced()，with()
 
-很多数组的传统方法会改变原数组，比如`push()`、`pop()`、`shift()`、`unshift()`等等。数组只要调用了这些方法，它的值就变了。现在有一个[提案](https://github.com/tc39/proposal-change-array-by-copy)，允许对数组进行操作时，不改变原数组，而返回一个原数组的拷贝。
-
-这样的方法一共有四个。
+很多数组的传统方法会改变原数组，比如`push()`、`pop()`、`shift()`、`unshift()`等等。数组只要调用了这些方法，它的值就变了。[ES2023](https://github.com/tc39/proposal-change-array-by-copy)引入了四个新方法，对数组进行操作时，不改变原数组，而返回一个原数组的拷贝。
 
 - `Array.prototype.toReversed() -> Array`
 - `Array.prototype.toSorted(compareFn) -> Array`
