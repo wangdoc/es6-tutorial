@@ -13,11 +13,6 @@
     "chapter": "loppo chapter",
     "server": "loppo server"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm update"
-    }
-  },
   "keywords": [
     "wangdoc",
     "es6",
@@ -26,9 +21,8 @@
   "author": "Ruan yifeng",
   "license": "ICC BY-SA 4.0",
   "dependencies": {
-    "gh-pages": "5.x",
-    "husky": "^4.3.8",
+    "gh-pages": "6.x",
     "loppo": "^0.6.24",
-    "loppo-theme-wangdoc": "^0.6.1"
+    "loppo-theme-wangdoc": "^0.7.1"
   }
 }
