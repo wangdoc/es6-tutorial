@@ -451,3 +451,37 @@ str.at(-1) // "o"
 
 该方法来自数组添加的`at()`方法，目前还是一个第三阶段的提案，可以参考《数组》一章的介绍。
 
+## 实例方法：toWellFormed()
+
+ES2024 引入了新的字符串方法`toWellFormed()`，用来处理 Unicode 的代理字符对问题（surrogates）。
+
+JavaScript 语言内部使用 UTF-16 格式，表示每个字符。UTF-16 只有16位，只能表示码点在`U+0000`到`U+FFFF`之间的 Unicode 字符。对于码点大于`U+FFFF`的 Unicode 字符（即码点大于16位的字符，`U+10000`到`U+10FFFF`），解决办法是使用代理字符对，即用两个 UTF-16 字符组合表示。
+
+具体来说，UTF-16 规定，`U+D800`至`U+DFFF`是空字符段，专门留给代理字符对使用。只要遇到这个范围内的码点，就知道它是代理字符对，本身没有意义，必须两个字符结合在一起解读。其中，前一个字符的范围规定为`0xD800`到`0xDBFF`之间，后一个字符的范围规定为`0xDC00`到`0xDFFF`之间。举例来说，码点`U+1D306`对应的字符为`𝌆`，它写成 UTF-16 就是`0xD834 0xDF06`。
+
+但是，字符串里面可能会出现单个代理字符对，即`U+D800`至`U+DFFF`里面的字符，它没有配对的另一个字符，无法进行解读，导致出现各种状况。
+
+`.toWellFormed()`就是为了解决这个问题，不改变原始字符串，返回一个新的字符串，将原始字符串里面的单个代理字符对，都替换为`U+FFFD`，从而可以在任何正常处理字符串的函数里面使用。
+
+```javascript
+"ab\uD800".toWellFormed() // 'ab�'
+```
+
+上面示例中，`\uD800`是单个的代理字符对，单独使用时没有意义。`toWellFormed()`将这个字符转为`\uFFFD`。
+
+再看下面的例子，`encodeURI()`遇到单个的代理字符对，会报错。
+
+```javascript
+const illFormed = "https://example.com/search?q=\uD800";
+
+encodeURI(illFormed) // 报错
+```
+
+`toWellFormed()`将其转换格式后，再使用`encodeURI()`就不会报错了。
+
+```javascript
+const illFormed = "https://example.com/search?q=\uD800";
+
+encodeURI(illFormed.toWellFormed()) // 正确
+```
+
