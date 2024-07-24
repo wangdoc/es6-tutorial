@@ -483,7 +483,7 @@ regexArrows.test('←↑→↓↔↕↖↗↘↙⇏⇐⇑⇒⇓⇔⇕⇖⇗⇘�
 
 ## v 修饰符：Unicode 属性类的运算
 
-有时，需要向某个 Unicode 属性类添加或减少字符，即需要对属性类进行运算。现在有一个[提案](https://github.com/tc39/proposal-regexp-v-flag)，增加了 Unicode 属性类的运算功能。
+有时，需要向某个 Unicode 属性类添加或减少字符，即需要对属性类进行运算。[ES2024](https://github.com/tc39/proposal-regexp-v-flag) 增加了 Unicode 属性类的运算功能。
 
 它提供两种形式的运算，一种是差集运算（A 集合减去 B 集合），另一种是交集运算。
 
@@ -515,6 +515,22 @@ regexArrows.test('←↑→↓↔↕↖↗↘↙⇏⇐⇑⇒⇓⇔⇕⇖⇗⇘�
 // Emoji 字符去除 ASCII 码字符
 [\p{Emoji}--\p{ASCII}]
 ```
+
+看一个实际的例子，`0`属于十进制字符类。
+
+```javascript
+/[\p{Decimal_Number}]/u.test('0') // true
+```
+
+上面示例中，字符类是 Unicode 专用的，所以必须使用`u`修饰符。
+
+如果把`0-9`从十进制字符类里面去掉，那么`0`就不属于这个类了。
+
+```javascript
+/[\p{Decimal_Number}--[0-9]]/v.test('0') // false
+```
+
+上面示例中，`v`修饰符只能用于 Unicode，所以可以省略`u`修饰符。
 
 ## 具名组匹配
 
