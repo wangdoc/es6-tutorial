@@ -314,6 +314,18 @@ const userAge = userId |> await fetchUserById |> getAgeFromUser;
 const userAge = getAgeFromUser(await fetchUserById(userId));
 ```
 
+管道运算符对多步骤的数据处理，非常有用。
+
+```javascript
+const numbers = [10, 20, 30, 40, 50];
+
+const processedNumbers = numbers
+  |> (_ => _.map(n => n / 2)) // [5, 10, 15, 20, 25]
+  |> (_ => _.filter(n => n > 10)); // [15, 20, 25]
+```
+
+上面示例中，管道运算符可以清晰表达数据处理的每一步，增加代码的可读性。
+
 ## Math.signbit()
 
 JavaScript 内部使用64位浮点数（国际标准 IEEE 754）表示数值。IEEE 754 规定，64位浮点数的第一位是符号位，`0`表示正数，`1`表示负数。所以会有两种零，`+0`是符号位为`0`时的零，`-0`是符号位为`1`时的零。实际编程中，判断一个值是`+0`还是`-0`非常麻烦，因为它们是相等的。
