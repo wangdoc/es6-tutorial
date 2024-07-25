@@ -21,7 +21,7 @@ for (let i of s) {
 
 上面代码通过`add()`方法向 Set 结构加入成员，结果表明 Set 结构不会添加重复的值。
 
-`Set`函数可以接受一个数组（或者具有 iterable 接口的其他数据结构）作为参数，用来初始化。
+`Set()`函数可以接受一个数组（或者具有 iterable 接口的其他数据结构）作为参数，用来初始化。
 
 ```javascript
 // 例一
@@ -88,6 +88,23 @@ set.size // 2
 
 上面代码表示，由于两个空对象不相等，所以它们被视为两个值。
 
+`Array.from()`方法可以将 Set 结构转为数组。
+
+```javascript
+const items = new Set([1, 2, 3, 4, 5]);
+const array = Array.from(items);
+```
+
+这就提供了去除数组重复成员的另一种方法。
+
+```javascript
+function dedupe(array) {
+  return Array.from(new Set(array));
+}
+
+dedupe([1, 1, 2, 3]) // [1, 2, 3]
+```
+
 ### Set 实例的属性和方法
 
 Set 结构的实例有以下属性。
@@ -140,23 +157,6 @@ properties.add('height');
 if (properties.has(someName)) {
   // do something
 }
-```
-
-`Array.from()`方法可以将 Set 结构转为数组。
-
-```javascript
-const items = new Set([1, 2, 3, 4, 5]);
-const array = Array.from(items);
-```
-
-这就提供了去除数组重复成员的另一种方法。
-
-```javascript
-function dedupe(array) {
-  return Array.from(new Set(array));
-}
-
-dedupe([1, 1, 2, 3]) // [1, 2, 3]
 ```
 
 ### 遍历操作
@@ -301,6 +301,122 @@ set = new Set(Array.from(set, val => val * 2));
 ```
 
 上面代码提供了两种方法，直接在遍历操作中改变原来的 Set 结构。
+
+### 集合运算
+
+[ES2025](https://github.com/tc39/proposal-set-methods) 为 Set 结构添加了以下集合运算方法。
+
+- Set.prototype.intersection(other)：交集
+- Set.prototype.union(other)：并集
+- Set.prototype.difference(other)：差集
+- Set.prototype.symmetricDifference(other)：对称差集
+- Set.prototype.isSubsetOf(other)：判断是否为子集
+- Set.prototype.isSupersetOf(other)：判断是否为超集
+- Set.prototype.isDisjointFrom(other)：判断是否不相交
+
+以上方法的参数都必须是 Set 结构，或者是一个类似于 Set 的结构（拥有`size`属性，以及`keys()`和`has()`方法。
+
+`.union()`是并集运算，返回包含两个集合中存在的所有成员的集合。
+
+```javascript
+const frontEnd = new Set(["JavaScript", "HTML", "CSS"]);
+const backEnd = new Set(["Python", "Java", "JavaScript"]);
+
+const all = frontEnd.union(backEnd);
+// Set {"JavaScript", "HTML", "CSS", "Python", "Java"}
+```
+
+`.intersection()`是交集运算，返回同时包含在两个集合中的成员的集合。
+
+```javascript
+const frontEnd = new Set(["JavaScript", "HTML", "CSS"]);
+const backEnd = new Set(["Python", "Java", "JavaScript"]);
+
+const frontAndBackEnd = frontEnd.intersection(backEnd);
+// Set {"JavaScript"}
+```
+
+`.difference()`是差集运算，返回第一个集合中存在但第二个集合中不存在的所有成员的集合。
+
+```javascript
+const frontEnd = new Set(["JavaScript", "HTML", "CSS"]);
+const backEnd = new Set(["Python", "Java", "JavaScript"]);
+
+const onlyFrontEnd = frontEnd.difference(backEnd);
+// Set {"HTML", "CSS"}
+
+const onlyBackEnd = backEnd.difference(frontEnd);
+// Set {"Python", "Java"}
+```
+
+`.symmetryDifference()`是对称差集，返回两个集合的所有独一无二成员的集合，即去除了重复的成员。
+
+```javascript
+const frontEnd = new Set(["JavaScript", "HTML", "CSS"]);
+const backEnd = new Set(["Python", "Java", "JavaScript"]);
+
+const onlyFrontEnd = frontEnd.symmetricDifference(backEnd);
+// Set {"HTML", "CSS", "Python", "Java"} 
+
+const onlyBackEnd = backEnd.symmetricDifference(frontEnd);
+// Set {"Python", "Java", "HTML", "CSS"}
+```
+
+注意，返回结果中的成员顺序，由添加到集合的顺序决定。
+
+`.isSubsetOf()`返回一个布尔值，判断第一个集合是否为第二个集合的子集，即第一个集合的所有成员都是第二个集合的成员。
+
+```javascript
+const frontEnd = new Set(["JavaScript", "HTML", "CSS"]);
+const declarative = new Set(["HTML", "CSS"]);
+
+declarative.isSubsetOf(frontEnd);
+// true
+
+frontEndLanguages.isSubsetOf(declarativeLanguages);
+// false
+```
+
+任何集合都是自身的子集。
+
+```javascript
+frontEnd.isSubsetOf(frontEnd);
+// true
+```
+
+`isSupersetOf()`返回一个布尔值，表示第一个集合是否为第二个集合的超集，即第二个集合的所有成员都是第一个集合的成员。
+
+```javascript
+const frontEnd = new Set(["JavaScript", "HTML", "CSS"]);
+const declarative = new Set(["HTML", "CSS"]);
+
+declarative.isSupersetOf(frontEnd);
+// false
+
+frontEnd.isSupersetOf(declarative);
+// true
+```
+
+任何集合都是自身的超集。
+
+```javascript
+frontEnd.isSupersetOf(frontEnd);
+// true
+```
+
+`.isDisjointFrom()`判断两个集合是否不相交，即没有共同成员。
+
+```javascript
+const frontEnd = new Set(["JavaScript", "HTML", "CSS"]);
+const interpreted = new Set(["JavaScript", "Ruby", "Python"]);
+const compiled = new Set(["Java", "C++", "TypeScript"]);
+
+interpreted.isDisjointFrom(compiled);
+// true
+
+frontEnd.isDisjointFrom(interpreted);
+// false
+```
 
 ## WeakSet
 
@@ -1282,4 +1398,8 @@ class Thingy {
 上面示例中，如果由于某种原因，`Thingy`类的实例对象没有调用`release()`方法，就被垃圾回收机制清除了，那么清理器就会调用回调函数`#cleanup()`，输出一条错误信息。
 
 由于无法知道清理器何时会执行，所以最好避免使用它。另外，如果浏览器窗口关闭或者进程意外退出，清理器则不会运行。
+
+## 参考链接
+
+- [Union, intersection, difference, and more are coming to JavaScript Sets](https://www.sonarsource.com/blog/union-intersection-difference-javascript-sets/)
 
