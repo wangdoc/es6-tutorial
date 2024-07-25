@@ -855,3 +855,14 @@ import.meta.scriptElement.dataset.foo
 // "abc"
 ```
 
+**（3）其他**
+
+Deno 现在还支持`import.meta.filename`和`import.meta.dirname`属性，对应 CommonJS 模块系统的`__filename`和`__dirname`属性。
+
+- `import.meta.filename`：当前模块文件的绝对路径。
+- `import.meta.dirname`：当前模块文件的目录的绝对路径。
+
+这两个属性都提供当前平台的正确的路径分隔符，比如 Linux 系统返回`/dev/my_module.ts`，Windows 系统返回`C:\dev\my_module.ts`。
+
+本地模块可以使用这两个属性，远程模块也可以使用。
+
