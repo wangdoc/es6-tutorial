@@ -123,7 +123,7 @@ Set 实例的方法分为两大类：操作方法（用于操作数据）和遍�
 
 ```javascript
 s.add(1).add(2).add(2);
-// 注意2被加入了两次
+// 注意 2 被加入了两次
 
 s.size // 2
 
@@ -148,7 +148,7 @@ if (properties[someName]) {
   // do something
 }
 
-// Set的写法
+// Set 的写法
 const properties = new Set();
 
 properties.add('width');
@@ -260,11 +260,11 @@ let unique = [...new Set(arr)];
 ```javascript
 let set = new Set([1, 2, 3]);
 set = new Set([...set].map(x => x * 2));
-// 返回Set结构：{2, 4, 6}
+// 返回 Set 结构：{2, 4, 6}
 
 let set = new Set([1, 2, 3, 4, 5]);
 set = new Set([...set].filter(x => (x % 2) == 0));
-// 返回Set结构：{2, 4}
+// 返回 Set 结构：{2, 4}
 ```
 
 因此使用 Set 可以很容易地实现并集（Union）、交集（Intersect）和差集（Difference）。
@@ -292,12 +292,12 @@ let difference = new Set([...a].filter(x => !b.has(x)));
 // 方法一
 let set = new Set([1, 2, 3]);
 set = new Set([...set].map(val => val * 2));
-// set的值是2, 4, 6
+// set 的值是 2, 4, 6
 
 // 方法二
 let set = new Set([1, 2, 3]);
 set = new Set(Array.from(set, val => val * 2));
-// set的值是2, 4, 6
+// set 的值是 2, 4, 6
 ```
 
 上面代码提供了两种方法，直接在遍历操作中改变原来的 Set 结构。
@@ -517,7 +517,7 @@ class Foo {
   }
   method () {
     if (!foos.has(this)) {
-      throw new TypeError('Foo.prototype.method 只能在Foo的实例上调用！');
+      throw new TypeError('Foo.prototype.method 只能在 Foo 的实例上调用！');
     }
   }
 }
@@ -814,7 +814,7 @@ for (let [key, value] of map.entries()) {
 // "F" "no"
 // "T" "yes"
 
-// 等同于使用map.entries()
+// 等同于使用 map.entries()
 for (let [key, value] of map) {
   console.log(key, value);
 }
@@ -1130,7 +1130,7 @@ wm.clear // undefined
 
 WeakMap 的例子很难演示，因为无法观察它里面的引用会自动消失。此时，其他引用都解除了，已经没有引用指向 WeakMap 的键名了，导致无法证实那个键名是不是存在。
 
-贺师俊老师[提示](https://github.com/ruanyf/es6tutorial/issues/362#issuecomment-292109104)，如果引用所指向的值占用特别多的内存，就可以通过 Node 的`process.memoryUsage`方法看出来。根据这个思路，网友[vtxf](https://github.com/ruanyf/es6tutorial/issues/362#issuecomment-292451925)补充了下面的例子。
+贺师俊老师[提示](https://github.com/ruanyf/es6tutorial/issues/362#issuecomment-292109104)，如果引用所指向的值占用特别多的内存，就可以通过 Node 的`process.memoryUsage`方法看出来。根据这个思路，网友 [vtxf](https://github.com/ruanyf/es6tutorial/issues/362#issuecomment-292451925) 补充了下面的例子。
 
 首先，打开 Node 命令行。
 
@@ -1164,7 +1164,7 @@ undefined
 // 设置 WeakMap 实例的键名，也指向 key 数组
 // 这时，key 数组实际被引用了两次，
 // 变量 key 引用一次，WeakMap 的键名引用了第二次
-// 但是，WeakMap 是弱引用，对于引擎来说，引用计数还是1
+// 但是，WeakMap 是弱引用，对于引擎来说，引用计数还是 1
 > wm.set(key, 1);
 WeakMap {}
 

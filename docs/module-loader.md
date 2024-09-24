@@ -777,7 +777,7 @@ export {foo};
 
 上面代码的第四行，改成了函数表达式，就不具有提升作用，执行就会报错。
 
-我们再来看 ES6 模块加载器[SystemJS](https://github.com/ModuleLoader/es6-module-loader/blob/master/docs/circular-references-bindings.md)给出的一个例子。
+我们再来看 ES6 模块加载器 [SystemJS](https://github.com/ModuleLoader/es6-module-loader/blob/master/docs/circular-references-bindings.md) 给出的一个例子。
 
 ```javascript
 // even.js

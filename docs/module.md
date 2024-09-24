@@ -9,7 +9,7 @@
 ES6 模块的设计思想是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。CommonJS 和 AMD 模块，都只能在运行时确定这些东西。比如，CommonJS 模块就是对象，输入时必须查找对象属性。
 
 ```javascript
-// CommonJS模块
+// CommonJS 模块
 let { stat, exists, readfile } = require('fs');
 
 // 等同于
@@ -24,7 +24,7 @@ let readfile = _fs.readfile;
 ES6 模块不是对象，而是通过`export`命令显式指定输出的代码，再通过`import`命令输入。
 
 ```javascript
-// ES6模块
+// ES6 模块
 import { stat, exists, readFile } from 'fs';
 ```
 
@@ -410,7 +410,7 @@ import {crc32} from 'crc32'; // 输入
 
 上面代码的两组写法，第一组是使用`export default`时，对应的`import`语句不需要使用大括号；第二组是不使用`export default`时，对应的`import`语句需要使用大括号。
 
-`export default`命令用于指定模块的默认输出。显然，一个模块只能有一个默认输出，因此`export default`命令只能使用一次。所以，import命令后面才不用加大括号，因为只可能唯一对应`export default`命令。
+`export default`命令用于指定模块的默认输出。显然，一个模块只能有一个默认输出，因此`export default`命令只能使用一次。所以，import 命令后面才不用加大括号，因为只可能唯一对应`export default`命令。
 
 本质上，`export default`就是输出一个叫做`default`的变量或方法，然后系统允许你为它取任意名字。所以，下面的写法是有效的。
 
@@ -548,7 +548,7 @@ ES2020 之前，有一种`import`语句，没有对应的复合写法。
 import * as someIdentifier from "someModule";
 ```
 
-[ES2020](https://github.com/tc39/proposal-export-ns-from)补上了这个写法。
+[ES2020](https://github.com/tc39/proposal-export-ns-from) 补上了这个写法。
 
 ```javascript
 export * as ns from "mod";
@@ -672,7 +672,7 @@ const myModual = require(path);
 
 上面的语句就是动态加载，`require`到底加载哪一个模块，只有运行时才知道。`import`命令做不到这一点。
 
-[ES2020提案](https://github.com/tc39/proposal-dynamic-import) 引入`import()`函数，支持动态加载模块。
+[ES2020 提案](https://github.com/tc39/proposal-dynamic-import)引入`import()`函数，支持动态加载模块。
 
 ```javascript
 import(specifier)

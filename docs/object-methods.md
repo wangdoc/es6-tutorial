@@ -31,10 +31,10 @@ ES5 可以通过下面的代码，部署`Object.is`。
 Object.defineProperty(Object, 'is', {
   value: function(x, y) {
     if (x === y) {
-      // 针对+0 不等于 -0的情况
+      // 针对 +0 不等于 -0 的情况
       return x !== 0 || 1 / x === 1 / y;
     }
-    // 针对NaN的情况
+    // 针对 NaN 的情况
     return x !== x && y !== y;
   },
   configurable: true,
@@ -780,14 +780,14 @@ map // Map { foo: "bar", baz: 42 }
 自己实现`Object.entries`方法，非常简单。
 
 ```javascript
-// Generator函数的版本
+// Generator 函数的版本
 function* entries(obj) {
   for (let key of Object.keys(obj)) {
     yield [key, obj[key]];
   }
 }
 
-// 非Generator函数的版本
+// 非 Generator 函数的版本
 function entries(obj) {
   let arr = [];
   for (let key of Object.keys(obj)) {

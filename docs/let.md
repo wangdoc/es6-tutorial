@@ -81,11 +81,11 @@ for (let i = 0; i < 3; i++) {
 
 ```javascript
 // var 的情况
-console.log(foo); // 输出undefined
+console.log(foo); // 输出 undefined
 var foo = 2;
 
 // let 的情况
-console.log(bar); // 报错ReferenceError
+console.log(bar); // 报错 ReferenceError
 let bar = 2;
 ```
 
@@ -112,11 +112,11 @@ ES6 明确规定，如果区块中存在`let`和`const`命令，这个区块对�
 
 ```javascript
 if (true) {
-  // TDZ开始
+  // TDZ 开始
   tmp = 'abc'; // ReferenceError
   console.log(tmp); // ReferenceError
 
-  let tmp; // TDZ结束
+  let tmp; // TDZ 结束
   console.log(tmp); // undefined
 
   tmp = 123;
@@ -333,7 +333,7 @@ function f() { console.log('I am outside!'); }
 
 (function () {
   if (false) {
-    // 重复声明一次函数f
+    // 重复声明一次函数 f
     function f() { console.log('I am inside!'); }
   }
 
@@ -363,7 +363,7 @@ function f() { console.log('I am outside!'); }
 
 (function () {
   if (false) {
-    // 重复声明一次函数f
+    // 重复声明一次函数 f
     function f() { console.log('I am inside!'); }
   }
 
@@ -628,5 +628,5 @@ var getGlobal = function () {
 
 [ES2020](https://github.com/tc39/proposal-global) 在语言标准的层面，引入`globalThis`作为顶层对象。也就是说，任何环境下，`globalThis`都是存在的，都可以从它拿到顶层对象，指向全局环境下的`this`。
 
-垫片库[`global-this`](https://github.com/ungap/global-this)模拟了这个提案，可以在所有环境拿到`globalThis`。
 
+垫片库 [`global-this`](https://github.com/ungap/global-this) 模拟了这个提案，可以在所有环境拿到`globalThis`。

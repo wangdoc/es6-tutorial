@@ -1,6 +1,6 @@
 # 装饰器
 
-[说明] Decorator 提案经历了重大的语法变化，目前处于第三阶段，定案之前不知道是否还有变化。本章现在属于草稿阶段，凡是标注“新语法”的章节，都是基于当前的语法，不过没有详细整理，只是一些原始材料；未标注“新语法”的章节基于以前的语法，是过去遗留的稿子。之所以保留以前的内容，有两个原因，一是 TypeScript 装饰器会用到这些语法，二是里面包含不少有价值的内容。等到标准完全定案，本章将彻底重写：删去过时内容，补充材料，增加解释。（2022年6月）
+[说明] Decorator 提案经历了重大的语法变化，目前处于第三阶段，定案之前不知道是否还有变化。本章现在属于草稿阶段，凡是标注“新语法”的章节，都是基于当前的语法，不过没有详细整理，只是一些原始材料；未标注“新语法”的章节基于以前的语法，是过去遗留的稿子。之所以保留以前的内容，有两个原因，一是 TypeScript 装饰器会用到这些语法，二是里面包含不少有价值的内容。等到标准完全定案，本章将彻底重写：删去过时内容，补充材料，增加解释。（2022 年 6 月）
 
 ## 简介（新语法）
 
@@ -56,7 +56,7 @@ type Decorator = (value: Input, context: {
 `context`对象有很多属性，其中`kind`属性表示属于哪一种装饰，其他属性的含义如下。
 
 - `kind`：字符串，表示装饰类型，可能的取值有`class`、`method`、`getter`、`setter`、`field`、`accessor`。
-- `name`：被装饰的值的名称: The name of the value, or in the case of private elements the description of it (e.g. the readable name).
+- `name`：被装饰的值的名称：The name of the value, or in the case of private elements the description of it (e.g. the readable name).
 - `access`：对象，包含访问这个值的方法，即存值器和取值器。
 - `static`: 布尔值，该值是否为静态元素。
 - `private`：布尔值，该值是否为私有元素。
@@ -370,7 +370,7 @@ class Person {
 
 ```javascript
 function readonly(target, name, descriptor){
-  // descriptor对象原来的值如下
+  // descriptor 对象原来的值如下
   // {
   //   value: specifiedFunction,
   //   enumerable: false,
@@ -916,7 +916,7 @@ C.prototype.m = bound(
 
 ## core-decorators.js
 
-[core-decorators.js](https://github.com/jayphelps/core-decorators.js)是一个第三方模块，提供了几个常见的装饰器，通过它可以更好地理解装饰器。
+[core-decorators.js](https://github.com/jayphelps/core-decorators.js) 是一个第三方模块，提供了几个常见的装饰器，通过它可以更好地理解装饰器。
 
 **（1）@autobind**
 
@@ -984,7 +984,7 @@ class Child extends Parent {
 }
 ```
 
-**（4）@deprecate (别名@deprecated)**
+**（4）@deprecate（别名@deprecated）**
 
 `deprecate`或`deprecated`装饰器在控制台显示一条警告，表示该方法将废除。
 
@@ -1067,7 +1067,7 @@ export default function publish(topic, channel) {
 }
 ```
 
-上面代码定义了一个名为`publish`的装饰器，它通过改写`descriptor.value`，使得原方法被调用时，会自动发出一个事件。它使用的事件“发布/订阅”库是[Postal.js](https://github.com/postaljs/postal.js)。
+上面代码定义了一个名为`publish`的装饰器，它通过改写`descriptor.value`，使得原方法被调用时，会自动发出一个事件。它使用的事件“发布/订阅”库是 [Postal.js](https://github.com/postaljs/postal.js)。
 
 它的用法如下。
 
@@ -1238,7 +1238,7 @@ new C().foo()
 
 Trait 也是一种装饰器，效果与 Mixin 类似，但是提供更多功能，比如防止同名方法的冲突、排除混入某些方法、为混入的方法起别名等等。
 
-下面采用[traits-decorator](https://github.com/CocktailJS/traits-decorator)这个第三方模块作为例子。这个模块提供的`traits`装饰器，不仅可以接受对象，还可以接受 ES6 类作为参数。
+下面采用 [traits-decorator](https://github.com/CocktailJS/traits-decorator) 这个第三方模块作为例子。这个模块提供的`traits`装饰器，不仅可以接受对象，还可以接受 ES6 类作为参数。
 
 ```javascript
 import { traits } from 'traits-decorator';

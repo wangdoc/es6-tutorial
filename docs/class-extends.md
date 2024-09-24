@@ -21,12 +21,12 @@ class Point { /* ... */ }
 
 class ColorPoint extends Point {
   constructor(x, y, color) {
-    super(x, y); // 调用父类的constructor(x, y)
+    super(x, y); // 调用父类的 constructor(x, y)
     this.color = color;
   }
 
   toString() {
-    return this.color + ' ' + super.toString(); // 调用父类的toString()
+    return this.color + ' ' + super.toString(); // 调用父类的 toString()
   }
 }
 ```
@@ -71,7 +71,7 @@ const bar = new Bar();
 // 2
 ```
 
-上面示例中，子类 Bar 新建实例时，会输出1和2。原因就是子类构造函数调用`super()`时，会执行一次父类构造函数。
+上面示例中，子类 Bar 新建实例时，会输出 1 和 2。原因就是子类构造函数调用`super()`时，会执行一次父类构造函数。
 
 另一个需要注意的地方是，在子类的构造函数中，只有调用`super()`之后，才可以使用`this`关键字，否则会报错。这是因为子类实例的构建，必须先完成父类的继承，只有`super()`方法才能让子类实例继承父类。
 
@@ -522,7 +522,7 @@ var obj = {
 obj.toString(); // MyObject: [object Object]
 ```
 
-## 类的 prototype 属性和\_\_proto\_\_属性
+## 类的 prototype 属性和 \_\_proto\_\_ 属性
 
 大多数浏览器的 ES5 实现之中，每一个对象都有`__proto__`属性，指向对应的构造函数的`prototype`属性。Class 作为构造函数的语法糖，同时有`prototype`属性和`__proto__`属性，因此同时存在两条继承链。
 

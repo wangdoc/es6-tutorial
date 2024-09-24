@@ -662,14 +662,14 @@ for (let s of str) {
   console.log(s); // h e l l o
 }
 
-// DOM NodeList对象
+// DOM NodeList 对象
 let paras = document.querySelectorAll("p");
 
 for (let p of paras) {
   p.classList.add("test");
 }
 
-// arguments对象
+// arguments 对象
 function printArgs() {
   for (let x of arguments) {
     console.log(x);

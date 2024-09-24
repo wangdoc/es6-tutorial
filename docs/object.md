@@ -15,7 +15,7 @@ baz // {foo: "bar"}
 const baz = {foo: foo};
 ```
 
-上面代码中，变量`foo`直接写在大括号里面。这时，属性名就是变量名, 属性值就是变量值。下面是另一个例子。
+上面代码中，变量`foo`直接写在大括号里面。这时，属性名就是变量名，属性值就是变量值。下面是另一个例子。
 
 ```javascript
 function f(x, y) {
@@ -58,10 +58,10 @@ const Person = {
 
   name: '张三',
 
-  //等同于birth: birth
+  //等同于 birth: birth
   birth,
 
-  // 等同于hello: function ()...
+  // 等同于 hello: function ()...
   hello() { console.log('我的名字是', this.name); }
 
 };

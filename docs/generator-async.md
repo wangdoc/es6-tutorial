@@ -289,10 +289,10 @@ function f(thunk) {
 JavaScript 语言是传值调用，它的 Thunk 函数含义有所不同。在 JavaScript 语言中，Thunk 函数替换的不是表达式，而是多参数函数，将其替换成一个只接受回调函数作为参数的单参数函数。
 
 ```javascript
-// 正常版本的readFile（多参数版本）
+// 正常版本的 readFile（多参数版本）
 fs.readFile(fileName, callback);
 
-// Thunk版本的readFile（单参数版本）
+// Thunk 版本的 readFile（单参数版本）
 var Thunk = function (fileName) {
   return function (callback) {
     return fs.readFile(fileName, callback);
@@ -308,7 +308,7 @@ readFileThunk(callback);
 任何函数，只要参数有回调函数，就能写成 Thunk 函数的形式。下面是一个简单的 Thunk 函数转换器。
 
 ```javascript
-// ES5版本
+// ES5 版本
 var Thunk = function(fn){
   return function (){
     var args = Array.prototype.slice.call(arguments);
@@ -319,7 +319,7 @@ var Thunk = function(fn){
   };
 };
 
-// ES6版本
+// ES6 版本
 const Thunk = function(fn) {
   return function (...args) {
     return function (callback) {

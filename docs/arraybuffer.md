@@ -10,7 +10,7 @@
 
 **（1）`ArrayBuffer`对象**：代表内存之中的一段二进制数据，可以通过“视图”进行操作。“视图”部署了数组接口，这意味着，可以用数组的方法操作内存。
 
-**（2）`TypedArray`视图**：共包括 9 种类型的视图，比如`Uint8Array`（无符号 8 位整数）数组视图, `Int16Array`（16 位整数）数组视图, `Float32Array`（32 位浮点数）数组视图等等。
+**（2）`TypedArray`视图**：共包括 9 种类型的视图，比如`Uint8Array`（无符号 8 位整数）数组视图，`Int16Array`（16 位整数）数组视图，`Float32Array`（32 位浮点数）数组视图等等。
 
 **（3）`DataView`视图**：可以自定义复合格式的视图，比如第一个字节是 Uint8（无符号 8 位整数）、第二、三个字节是 Int16（16 位整数）、第四个字节开始是 Float32（32 位浮点数）等等，此外还可以自定义字节序。
 
@@ -44,7 +44,7 @@
 
 ### 概述
 
-`ArrayBuffer`对象代表储存二进制数据的一段内存，它不能直接读写，只能通过视图（`TypedArray`视图和`DataView`视图)来读写，视图的作用是以指定格式解读二进制数据。
+`ArrayBuffer`对象代表储存二进制数据的一段内存，它不能直接读写，只能通过视图（`TypedArray`视图和`DataView`视图）来读写，视图的作用是以指定格式解读二进制数据。
 
 `ArrayBuffer`也是一个构造函数，可以分配一段可以存放数据的连续内存区域。
 
@@ -174,16 +174,16 @@ TypedArray 数组提供 9 种构造函数，用来生成相应类型的数组实
 同一个`ArrayBuffer`对象之上，可以根据不同的数据类型，建立多个视图。
 
 ```javascript
-// 创建一个8字节的ArrayBuffer
+// 创建一个 8 字节的 ArrayBuffer
 const b = new ArrayBuffer(8);
 
-// 创建一个指向b的Int32视图，开始于字节0，直到缓冲区的末尾
+// 创建一个指向 b 的 Int32 视图，开始于字节 0，直到缓冲区的末尾
 const v1 = new Int32Array(b);
 
-// 创建一个指向b的Uint8视图，开始于字节2，直到缓冲区的末尾
+// 创建一个指向 b 的 Uint8 视图，开始于字节 2，直到缓冲区的末尾
 const v2 = new Uint8Array(b, 2);
 
-// 创建一个指向b的Int16视图，开始于字节2，长度为2
+// 创建一个指向 b 的 Int16 视图，开始于字节 2，长度为 2
 const v3 = new Int16Array(b, 2, 2);
 ```
 
@@ -384,7 +384,7 @@ for (let i = 0; i < int16View.length; i++) {
 下面是另一个例子。
 
 ```javascript
-// 假定某段buffer包含如下字节 [0x02, 0x01, 0x03, 0x07]
+// 假定某段 buffer 包含如下字节 [0x02, 0x01, 0x03, 0x07]
 const buffer = new ArrayBuffer(4);
 const v1 = new Uint8Array(buffer);
 v1[0] = 2;
@@ -395,15 +395,15 @@ v1[3] = 7;
 const uInt16View = new Uint16Array(buffer);
 
 // 计算机采用小端字节序
-// 所以头两个字节等于258
+// 所以头两个字节等于 258
 if (uInt16View[0] === 258) {
   console.log('OK'); // "OK"
 }
 
 // 赋值运算
-uInt16View[0] = 255;    // 字节变为[0xFF, 0x00, 0x03, 0x07]
-uInt16View[0] = 0xff05; // 字节变为[0x05, 0xFF, 0x03, 0x07]
-uInt16View[1] = 0x0210; // 字节变为[0x05, 0xFF, 0x10, 0x02]
+uInt16View[0] = 255;    // 字节变为 [0xFF, 0x00, 0x03, 0x07]
+uInt16View[0] = 0xff05; // 字节变为 [0x05, 0xFF, 0x03, 0x07]
+uInt16View[1] = 0x0210; // 字节变为 [0x05, 0xFF, 0x10, 0x02]
 ```
 
 下面的函数可以用来判断，当前视图是小端字节序，还是大端字节序。
@@ -746,7 +746,7 @@ const dv = new DataView(buffer);
 - `DataView.prototype.byteLength`：返回占据的内存字节长度
 - `DataView.prototype.byteOffset`：返回当前视图从对应的 ArrayBuffer 对象的哪个字节开始
 
-`DataView`实例提供10个方法读取内存。
+`DataView`实例提供 10 个方法读取内存。
 
 - **`getInt8`**：读取 1 个字节，返回一个 8 位整数。
 - **`getUint8`**：读取 1 个字节，返回一个无符号的 8 位整数。
@@ -765,13 +765,13 @@ const dv = new DataView(buffer);
 const buffer = new ArrayBuffer(24);
 const dv = new DataView(buffer);
 
-// 从第1个字节读取一个8位无符号整数
+// 从第 1 个字节读取一个 8 位无符号整数
 const v1 = dv.getUint8(0);
 
-// 从第2个字节读取一个16位无符号整数
+// 从第 2 个字节读取一个 16 位无符号整数
 const v2 = dv.getUint16(1);
 
-// 从第4个字节读取一个16位无符号整数
+// 从第 4 个字节读取一个 16 位无符号整数
 const v3 = dv.getUint16(3);
 ```
 
@@ -790,7 +790,7 @@ const v2 = dv.getUint16(3, false);
 const v3 = dv.getUint16(3);
 ```
 
-DataView 视图提供10个方法写入内存。
+DataView 视图提供 10 个方法写入内存。
 
 - **`setInt8`**：写入 1 个字节的 8 位整数。
 - **`setUint8`**：写入 1 个字节的 8 位无符号整数。
@@ -806,13 +806,13 @@ DataView 视图提供10个方法写入内存。
 这一系列`set`方法，接受两个参数，第一个参数是字节序号，表示从哪个字节开始写入，第二个参数为写入的数据。对于那些写入两个或两个以上字节的方法，需要指定第三个参数，`false`或者`undefined`表示使用大端字节序写入，`true`表示使用小端字节序写入。
 
 ```javascript
-// 在第1个字节，以大端字节序写入值为25的32位整数
+// 在第 1 个字节，以大端字节序写入值为 25 的 32 位整数
 dv.setInt32(0, 25, false);
 
-// 在第5个字节，以大端字节序写入值为25的32位整数
+// 在第 5 个字节，以大端字节序写入值为 25 的 32 位整数
 dv.setInt32(4, 25);
 
-// 在第9个字节，以小端字节序写入值为2.5的32位浮点数
+// 在第 9 个字节，以小端字节序写入值为 2.5 的 32 位浮点数
 dv.setFloat32(8, 2.5, true);
 ```
 
@@ -1032,7 +1032,7 @@ onmessage = function (ev) {
 
 线程之间的数据交换可以是各种格式，不仅仅是字符串，也可以是二进制数据。这种交换采用的是复制机制，即一个进程将需要分享的数据复制一份，通过`postMessage`方法交给另一个进程。如果数据量比较大，这种通信的效率显然比较低。很容易想到，这时可以留出一块内存区域，由主线程与 Worker 线程共享，两方都可以读写，那么就会大大提高效率，协作起来也会比较简单（不像`postMessage`那么麻烦）。
 
-ES2017 引入[`SharedArrayBuffer`](https://github.com/tc39/ecmascript_sharedmem/blob/master/TUTORIAL.md)，允许 Worker 线程与主线程共享同一块内存。`SharedArrayBuffer`的 API 与`ArrayBuffer`一模一样，唯一的区别是后者无法共享数据。
+ES2017 引入 [`SharedArrayBuffer`](https://github.com/tc39/ecmascript_sharedmem/blob/master/TUTORIAL.md)，允许 Worker 线程与主线程共享同一块内存。`SharedArrayBuffer`的 API 与`ArrayBuffer`一模一样，唯一的区别是后者无法共享数据。
 
 ```javascript
 // 主线程
@@ -1094,7 +1094,7 @@ let ia;
 onmessage = function (ev) {
   ia = ev.data;
   console.log(ia.length); // 100000
-  console.log(ia[37]); // 输出 163，因为这是第38个质数
+  console.log(ia[37]); // 输出 163，因为这是第 38 个质数
 };
 ```
 
@@ -1260,7 +1260,7 @@ Atomics.wait(sharedArray, index, value, timeout)
 它的四个参数含义如下。
 
 - sharedArray：共享内存的视图数组。
-- index：视图数据的位置（从0开始）。
+- index：视图数据的位置（从 0 开始）。
 - value：该位置的预期值。一旦实际值等于预期值，就进入休眠。
 - timeout：整数，表示过了这个时间以后，就自动唤醒，单位毫秒。该参数可选，默认值是`Infinity`，即无限期的休眠，只有通过`Atomics.notify()`方法才能唤醒。
 
@@ -1275,7 +1275,7 @@ Atomics.notify(sharedArray, index, count)
 它的三个参数含义如下。
 
 - sharedArray：共享内存的视图数组。
-- index：视图数据的位置（从0开始）。
+- index：视图数据的位置（从 0 开始）。
 - count：需要唤醒的 Worker 线程的数量，默认为`Infinity`。
 
 `Atomics.notify()`方法一旦唤醒休眠的 Worker 线程，就会让它继续往下运行。

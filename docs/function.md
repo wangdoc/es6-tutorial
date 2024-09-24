@@ -424,12 +424,12 @@ add(2, 5, 3) // 10
 下面是一个 rest 参数代替`arguments`变量的例子。
 
 ```javascript
-// arguments变量的写法
+// arguments 变量的写法
 function sortNumbers() {
   return Array.from(arguments).sort();
 }
 
-// rest参数的写法
+// rest 参数的写法
 const sortNumbers = (...numbers) => numbers.sort();
 ```
 
@@ -977,7 +977,7 @@ mult2(plus1(5))
 // λ演算的写法
 fix = λf.(λx.f(λv.x(x)(v)))(λx.f(λv.x(x)(v)))
 
-// ES6的写法
+// ES6 的写法
 var fix = f => (x => f(v => x(x)(v)))
                (x => f(v => x(x)(v)));
 ```
@@ -1399,4 +1399,3 @@ try {
   // ...
 }
 ```
-

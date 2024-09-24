@@ -603,13 +603,13 @@ function spawn(genF) {
 ```javascript
 function chainAnimationsPromise(elem, animations) {
 
-  // 变量ret用来保存上一个动画的返回值
+  // 变量 ret 用来保存上一个动画的返回值
   let ret = null;
 
-  // 新建一个空的Promise
+  // 新建一个空的 Promise
   let p = Promise.resolve();
 
-  // 使用then方法，添加所有动画
+  // 使用 then 方法，添加所有动画
   for(let anim of animations) {
     p = p.then(function(val) {
       ret = val;
@@ -617,7 +617,7 @@ function chainAnimationsPromise(elem, animations) {
     });
   }
 
-  // 返回一个部署了错误捕捉机制的Promise
+  // 返回一个部署了错误捕捉机制的 Promise
   return p.catch(function(e) {
     /* 忽略错误，继续执行 */
   }).then(function() {
@@ -677,7 +677,7 @@ Promise 的写法如下。
 
 ```javascript
 function logInOrder(urls) {
-  // 远程读取所有URL
+  // 远程读取所有 URL
   const textPromises = urls.map(url => {
     return fetch(url).then(response => response.text());
   });
@@ -707,7 +707,7 @@ async function logInOrder(urls) {
 
 ```javascript
 async function logInOrder(urls) {
-  // 并发读取远程URL
+  // 并发读取远程 URL
   const textPromises = urls.map(async url => {
     const response = await fetch(url);
     return response.text();

@@ -154,7 +154,7 @@ ES6 规格将这个标准流程，使用简写的方式表达。
 > 1. 如果`Type(x)`是对象，`Type(y)`是字符串或数值或`Symbol`值，返回`ToPrimitive(x) == y`的结果。
 > 1. 返回`false`。
 
-由于`0`的类型是数值，`null`的类型是 Null（这是规格[4.3.13 小节](http://www.ecma-international.org/ecma-262/6.0/#sec-terms-and-definitions-null-type)的规定，是内部 Type 运算的结果，跟`typeof`运算符无关）。因此上面的前 11 步都得不到结果，要到第 12 步才能得到`false`。
+由于`0`的类型是数值，`null`的类型是 Null（这是规格 [4.3.13 小节](http://www.ecma-international.org/ecma-262/6.0/#sec-terms-and-definitions-null-type)的规定，是内部 Type 运算的结果，跟`typeof`运算符无关）。因此上面的前 11 步都得不到结果，要到第 12 步才能得到`false`。
 
 ```javascript
 0 == null // false
@@ -199,7 +199,7 @@ a2.map(n => 1) // [, , ,]
 
 为什么`a1`与`a2`成员的行为不一致？数组的成员是`undefined`或空位，到底有什么不同？
 
-规格的[12.2.5 小节《数组的初始化》](http://www.ecma-international.org/ecma-262/6.0/#sec-array-initializer)给出了答案。
+规格的 [12.2.5 小节《数组的初始化》](http://www.ecma-international.org/ecma-262/6.0/#sec-array-initializer)给出了答案。
 
 > “Array elements may be elided at the beginning, middle or end of the element list. Whenever a comma in the element list is not preceded by an AssignmentExpression (i.e., a comma at the beginning or after another comma), the missing array element contributes to the length of the Array and increases the index of subsequent elements. Elided array elements are not defined. If an element is elided at the end of an array, that element does not contribute to the length of the Array.”
 
@@ -209,13 +209,13 @@ a2.map(n => 1) // [, , ,]
 
 上面的规格说得很清楚，数组的空位会反映在`length`属性，也就是说空位有自己的位置，但是这个位置的值是未定义，即这个值是不存在的。如果一定要读取，结果就是`undefined`（因为`undefined`在 JavaScript 语言中表示不存在）。
 
-这就解释了为什么`in`运算符、数组的`hasOwnProperty`方法、`Object.keys`方法，都取不到空位的属性名。因为这个属性名根本就不存在，规格里面没说要为空位分配属性名(位置索引），只说要为下一个元素的位置索引加 1。
+这就解释了为什么`in`运算符、数组的`hasOwnProperty`方法、`Object.keys`方法，都取不到空位的属性名。因为这个属性名根本就不存在，规格里面没说要为空位分配属性名（位置索引），只说要为下一个元素的位置索引加 1。
 
 至于为什么数组的`map`方法会跳过空位，请看下一节。
 
 ## 数组的 map 方法
 
-规格的[22.1.3.15 小节](http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.map)定义了数组的`map`方法。该小节先是总体描述`map`方法的行为，里面没有提到数组空位。
+规格的 [22.1.3.15 小节](http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.map)定义了数组的`map`方法。该小节先是总体描述`map`方法的行为，里面没有提到数组空位。
 
 后面的算法描述是这样的。
 

@@ -635,19 +635,19 @@ function log(generator) {
   console.log('starting generator');
   try {
     v = generator.next();
-    console.log('第一次运行next方法', v);
+    console.log('第一次运行 next 方法', v);
   } catch (err) {
     console.log('捕捉错误', v);
   }
   try {
     v = generator.next();
-    console.log('第二次运行next方法', v);
+    console.log('第二次运行 next 方法', v);
   } catch (err) {
     console.log('捕捉错误', v);
   }
   try {
     v = generator.next();
-    console.log('第三次运行next方法', v);
+    console.log('第三次运行 next 方法', v);
   } catch (err) {
     console.log('捕捉错误', v);
   }
@@ -656,10 +656,10 @@ function log(generator) {
 
 log(g());
 // starting generator
-// 第一次运行next方法 { value: 1, done: false }
+// 第一次运行 next 方法 { value: 1, done: false }
 // throwing an exception
 // 捕捉错误 { value: 1, done: false }
-// 第三次运行next方法 { value: undefined, done: true }
+// 第三次运行 next 方法 { value: undefined, done: true }
 // caller done
 ```
 
@@ -1028,8 +1028,8 @@ function Tree(left, label, right) {
 }
 
 // 下面是中序（inorder）遍历函数。
-// 由于返回的是一个遍历器，所以要用generator函数。
-// 函数体内采用递归算法，所以左树和右树要用yield*遍历
+// 由于返回的是一个遍历器，所以要用 generator 函数。
+// 函数体内采用递归算法，所以左树和右树要用 yield* 遍历
 function* inorder(t) {
   if (t) {
     yield* inorder(t.left);
@@ -1285,10 +1285,10 @@ function* loadUI() {
   hideLoadingScreen();
 }
 var loader = loadUI();
-// 加载UI
+// 加载 UI
 loader.next()
 
-// 卸载UI
+// 卸载 UI
 loader.next()
 ```
 
@@ -1386,7 +1386,7 @@ scheduler(longRunningTask(initialValue));
 
 function scheduler(task) {
   var taskObj = task.next(task.value);
-  // 如果Generator函数未结束，就继续调用
+  // 如果 Generator 函数未结束，就继续调用
   if (!taskObj.done) {
     task.value = taskObj.value
     scheduler(task);
@@ -1508,7 +1508,7 @@ function* doStuff() {
 
 ```javascript
 for (task of doStuff()) {
-  // task是一个函数，可以像回调函数那样使用它
+  // task 是一个函数，可以像回调函数那样使用它
 }
 ```
 

@@ -334,7 +334,7 @@ getJSON('/post/1.json').then(function(post) {
 }).then(function(comments) {
   // some code
 }).catch(function(error) {
-  // 处理前面三个Promise产生的错误
+  // 处理前面三个 Promise 产生的错误
 });
 ```
 
@@ -368,7 +368,7 @@ promise
 ```javascript
 const someAsyncThing = function() {
   return new Promise(function(resolve, reject) {
-    // 下面一行会报错，因为x没有声明
+    // 下面一行会报错，因为 x 没有声明
     resolve(x + 2);
   });
 };
@@ -415,7 +415,7 @@ promise.then(function (value) { console.log(value) });
 ```javascript
 const someAsyncThing = function() {
   return new Promise(function(resolve, reject) {
-    // 下面一行会报错，因为x没有声明
+    // 下面一行会报错，因为 x 没有声明
     resolve(x + 2);
   });
 };
@@ -451,7 +451,7 @@ Promise.resolve()
 ```javascript
 const someAsyncThing = function() {
   return new Promise(function(resolve, reject) {
-    // 下面一行会报错，因为x没有声明
+    // 下面一行会报错，因为 x 没有声明
     resolve(x + 2);
   });
 };
@@ -475,7 +475,7 @@ someAsyncThing().then(function() {
   return someOtherAsyncThing();
 }).catch(function(error) {
   console.log('oh no', error);
-  // 下面一行会报错，因为y没有声明
+  // 下面一行会报错，因为 y 没有声明
   y + 2;
 }).catch(function(error) {
   console.log('carry on', error);
@@ -584,7 +584,7 @@ const p = Promise.all([p1, p2, p3]);
 下面是一个具体的例子。
 
 ```javascript
-// 生成一个Promise对象的数组
+// 生成一个 Promise 对象的数组
 const promises = [2, 3, 5, 7, 11, 13].map(function (id) {
   return getJSON('/post/' + id + ".json");
 });
@@ -881,7 +881,7 @@ p1.then(function (value) {
 });
 ```
 
-上面代码中，`thenable`对象的`then()`方法执行后，对象`p1`的状态就变为`resolved`，从而立即执行最后那个`then()`方法指定的回调函数，输出42。
+上面代码中，`thenable`对象的`then()`方法执行后，对象`p1`的状态就变为`resolved`，从而立即执行最后那个`then()`方法指定的回调函数，输出 42。
 
 **（3）参数不是具有`then()`方法的对象，或根本就不是对象**
 

@@ -40,7 +40,7 @@ ES6 的第一个版本，就这样在 2015 年 6 月发布了，正式名称就�
 - Stage 3 - Candidate（候选人阶段）
 - Stage 4 - Finished（定案阶段）
 
-一个提案只要能进入 Stage 2，就差不多肯定会包括在以后的正式标准里面。ECMAScript 当前的所有提案，可以在 TC39 的官方网站[GitHub.com/tc39/ecma262](https://github.com/tc39/ecma262)查看。
+一个提案只要能进入 Stage 2，就差不多肯定会包括在以后的正式标准里面。ECMAScript 当前的所有提案，可以在 TC39 的官方网站 [GitHub.com/tc39/ecma262](https://github.com/tc39/ecma262) 查看。
 
 本书的写作目标之一，是跟踪 ECMAScript 语言的最新进展，介绍 5.1 版本以后所有的新语法。对于那些明确或很有希望，将要列入标准的新语法，都将予以介绍。
 
@@ -68,7 +68,7 @@ ES6 从开始制定到最后发布，整整用了 15 年。
 
 2015 年 6 月，ECMAScript 6 正式通过，成为国际标准。从 2000 年算起，这时已经过去了 15 年。
 
-目前，各大浏览器对 ES6 的支持可以查看[https://compat-table.github.io/compat-table/es6/](https://compat-table.github.io/compat-table/es6/)。
+目前，各大浏览器对 ES6 的支持可以查看 [https://compat-table.github.io/compat-table/es6/](https://compat-table.github.io/compat-table/es6/)。
 
 Node.js 是 JavaScript 的服务器运行环境（runtime）。它对 ES6 的支持度更高。除了那些默认打开的功能，还有一些语法功能已经实现了，但是默认没有打开。使用下面的命令，可以查看 Node.js 默认没有打开的实验性语法。
 
@@ -167,7 +167,7 @@ $ npx babel src --out-dir lib
 # 或者
 $ npx babel src -d lib
 
-# -s 参数生成source map文件
+# -s 参数生成 source map 文件
 $ npx babel src -d lib -s
 ```
 
@@ -227,7 +227,7 @@ $ node index.js
 
 Babel 默认只转换新的 JavaScript 句法（syntax），而不转换新的 API，比如`Iterator`、`Generator`、`Set`、`Map`、`Proxy`、`Reflect`、`Symbol`、`Promise`等全局对象，以及一些定义在全局对象上的方法（比如`Object.assign`）都不会转码。
 
-举例来说，ES6 在`Array`对象上新增了`Array.from`方法。Babel 就不会转码这个方法。如果想让这个方法运行，可以使用`core-js`和`regenerator-runtime`(后者提供generator函数的转码)，为当前环境提供一个垫片。
+举例来说，ES6 在`Array`对象上新增了`Array.from`方法。Babel 就不会转码这个方法。如果想让这个方法运行，可以使用`core-js`和`regenerator-runtime`（后者提供 generator 函数的转码），为当前环境提供一个垫片。
 
 安装命令如下。
 
@@ -245,11 +245,11 @@ require('core-js');
 require('regenerator-runtime/runtime');
 ```
 
-Babel 默认不转码的 API 非常多，详细清单可以查看`babel-plugin-transform-runtime`模块的[definitions.js](https://github.com/babel/babel/blob/master/packages/babel-plugin-transform-runtime/src/runtime-corejs3-definitions.js)文件。
+Babel 默认不转码的 API 非常多，详细清单可以查看`babel-plugin-transform-runtime`模块的 [definitions.js](https://github.com/babel/babel/blob/master/packages/babel-plugin-transform-runtime/src/runtime-corejs3-definitions.js) 文件。
 
 ### 浏览器环境
 
-Babel 也可以用于浏览器环境，使用[@babel/standalone](https://babeljs.io/docs/en/next/babel-standalone.html)模块提供的浏览器版本，将其插入网页。
+Babel 也可以用于浏览器环境，使用 [@babel/standalone](https://babeljs.io/docs/en/next/babel-standalone.html) 模块提供的浏览器版本，将其插入网页。
 
 ```html
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -260,5 +260,5 @@ Babel 也可以用于浏览器环境，使用[@babel/standalone](https://babeljs
 
 注意，网页实时将 ES6 代码转为 ES5，对性能会有影响。生产环境需要加载已经转码完成的脚本。
 
-Babel 提供一个[REPL 在线编译器](https://babeljs.io/repl/)，可以在线将 ES6 代码转为 ES5 代码。转换后的代码，可以直接作为 ES5 代码插入网页运行。
 
+Babel 提供一个 [REPL 在线编译器](https://babeljs.io/repl/)，可以在线将 ES6 代码转为 ES5 代码。转换后的代码，可以直接作为 ES5 代码插入网页运行。

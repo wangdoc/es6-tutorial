@@ -656,7 +656,7 @@ Reflect.ownKeys(myClass.prototype)
 
 ### 私有属性的正式写法
 
-[ES2022](https://github.com/tc39/proposal-class-fields)正式为`class`添加了私有属性，方法是在属性名之前使用`#`表示。
+[ES2022](https://github.com/tc39/proposal-class-fields) 正式为`class`添加了私有属性，方法是在属性名之前使用`#`表示。
 
 ```javascript
 class IncreasingCounter {

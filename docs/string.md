@@ -91,9 +91,9 @@ JavaScript 字符串允许直接输入字符，以及输入字符的转义形式
 '中' === '\u4e2d' // true
 ```
 
-但是，JavaScript 规定有5个字符，不能在字符串里面直接使用，只能使用转义形式。
+但是，JavaScript 规定有 5 个字符，不能在字符串里面直接使用，只能使用转义形式。
 
-- U+005C：反斜杠（reverse solidus)
+- U+005C：反斜杠（reverse solidus）
 - U+000D：回车（carriage return）
 - U+2028：行分隔符（line separator）
 - U+2029：段分隔符（paragraph separator）
@@ -256,7 +256,7 @@ function fn() {
 如果模板字符串中的变量没有声明，将报错。
 
 ```javascript
-// 变量place没有声明
+// 变量 place 没有声明
 let msg = `Hello, ${place}`;
 // 报错
 ```
@@ -460,7 +460,7 @@ function tag(stringArr, ...values){
 `tag`函数所有参数的实际值如下。
 
 - 第一个参数：`['Hello ', ' world ', '']`
-- 第二个参数: 15
+- 第二个参数：15
 - 第三个参数：50
 
 也就是说，`tag`函数实际上以下面的形式调用。
@@ -571,13 +571,13 @@ message
 
 ```javascript
 i18n`Welcome to ${siteName}, you are visitor number ${visitorNumber}!`
-// "欢迎访问xxx，您是第xxxx位访问者！"
+// "欢迎访问 xxx，您是第 xxxx 位访问者！"
 ```
 
 模板字符串本身并不能取代 Mustache 之类的模板库，因为没有条件判断和循环处理功能，但是通过标签函数，你可以自己添加这些功能。
 
 ```javascript
-// 下面的hashTemplate函数
+// 下面的 hashTemplate 函数
 // 是一个自定义的模板处理函数
 let libraryHtml = hashTemplate`
   <ul>

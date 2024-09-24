@@ -175,11 +175,11 @@ Number.isNaN(1) // false
 ES6 将全局方法`parseInt()`和`parseFloat()`，移植到`Number`对象上面，行为完全保持不变。
 
 ```javascript
-// ES5的写法
+// ES5 的写法
 parseInt('12.34') // 12
 parseFloat('123.45#') // 123.45
 
-// ES6的写法
+// ES6 的写法
 Number.parseInt('12.34') // 12
 Number.parseFloat('123.45#') // 123.45
 ```
@@ -216,13 +216,13 @@ Number.isInteger('15') // false
 Number.isInteger(true) // false
 ```
 
-注意，由于 JavaScript 采用 IEEE 754 标准，数值存储为64位双精度格式，数值精度最多可以达到 53 个二进制位（1 个隐藏位与 52 个有效位）。如果数值的精度超过这个限度，第54位及后面的位就会被丢弃，这种情况下，`Number.isInteger`可能会误判。
+注意，由于 JavaScript 采用 IEEE 754 标准，数值存储为 64 位双精度格式，数值精度最多可以达到 53 个二进制位（1 个隐藏位与 52 个有效位）。如果数值的精度超过这个限度，第 54 位及后面的位就会被丢弃，这种情况下，`Number.isInteger`可能会误判。
 
 ```javascript
 Number.isInteger(3.0000000000000002) // true
 ```
 
-上面代码中，`Number.isInteger`的参数明明不是整数，但是会返回`true`。原因就是这个小数的精度达到了小数点后16个十进制位，转成二进制位超过了53个二进制位，导致最后的那个`2`被丢弃了。
+上面代码中，`Number.isInteger`的参数明明不是整数，但是会返回`true`。原因就是这个小数的精度达到了小数点后 16 个十进制位，转成二进制位超过了 53 个二进制位，导致最后的那个`2`被丢弃了。
 
 类似的情况还有，如果一个数值的绝对值小于`Number.MIN_VALUE`（5E-324），即小于 JavaScript 能够分辨的最小值，会被自动转为 0。这时，`Number.isInteger`也会误判。
 
@@ -231,7 +231,7 @@ Number.isInteger(5E-324) // false
 Number.isInteger(5E-325) // true
 ```
 
-上面代码中，`5E-325`由于值太小，会被自动转为0，因此返回`true`。
+上面代码中，`5E-325`由于值太小，会被自动转为 0，因此返回`true`。
 
 总之，如果对数据精度的要求较高，不建议使用`Number.isInteger()`判断一个数值是否为整数。
 
@@ -583,9 +583,9 @@ Math.imul(0x7fffffff, 0x7fffffff) // 1
 
 ### Math.fround()
 
-`Math.fround`方法返回一个数的32位单精度浮点数形式。
+`Math.fround`方法返回一个数的 32 位单精度浮点数形式。
 
-对于32位单精度格式来说，数值精度是24个二进制位（1 位隐藏位与 23 位有效位），所以对于 -2<sup>24</sup> 至 2<sup>24</sup> 之间的整数（不含两个端点），返回结果与参数本身一致。
+对于 32 位单精度格式来说，数值精度是 24 个二进制位（1 位隐藏位与 23 位有效位），所以对于 -2<sup>24</sup> 至 2<sup>24</sup> 之间的整数（不含两个端点），返回结果与参数本身一致。
 
 ```javascript
 Math.fround(0)   // 0
@@ -600,7 +600,7 @@ Math.fround(2 ** 24)       // 16777216
 Math.fround(2 ** 24 + 1)   // 16777216
 ```
 
-`Math.fround`方法的主要作用，是将64位双精度浮点数转为32位单精度浮点数。如果小数的精度超过24个二进制位，返回值就会不同于原值，否则返回值不变（即与64位双精度值一致）。
+`Math.fround`方法的主要作用，是将 64 位双精度浮点数转为 32 位单精度浮点数。如果小数的精度超过 24 个二进制位，返回值就会不同于原值，否则返回值不变（即与 64 位双精度值一致）。
 
 ```javascript
 // 未丢失有效精度
@@ -750,7 +750,7 @@ ES6 新增了 6 个双曲函数方法。
 
 ### 简介
 
-JavaScript 所有数字都保存成 64 位浮点数，这给数值的表示带来了两大限制。一是数值的精度只能到 53 个二进制位（相当于 16 个十进制位），大于这个范围的整数，JavaScript 是无法精确表示，这使得 JavaScript 不适合进行科学和金融方面的精确计算。二是大于或等于2的1024次方的数值，JavaScript 无法表示，会返回`Infinity`。
+JavaScript 所有数字都保存成 64 位浮点数，这给数值的表示带来了两大限制。一是数值的精度只能到 53 个二进制位（相当于 16 个十进制位），大于这个范围的整数，JavaScript 是无法精确表示，这使得 JavaScript 不适合进行科学和金融方面的精确计算。二是大于或等于 2 的 1024 次方的数值，JavaScript 无法表示，会返回`Infinity`。
 
 ```javascript
 // 超过 53 个二进制位的数值，无法保持精度
@@ -810,7 +810,7 @@ BigInt 可以使用负号（`-`），但是不能使用正号（`+`），因为�
 +42n // 报错
 ```
 
-JavaScript 以前不能计算70的阶乘（即`70!`），因为超出了可以表示的精度。
+JavaScript 以前不能计算 70 的阶乘（即`70!`），因为超出了可以表示的精度。
 
 ```javascript
 let p = 1;
@@ -886,7 +886,7 @@ BigInt.asUintN(64, max + 1n)
 // 9223372036854775808n
 ```
 
-上面代码中，`max`是64位带符号的 BigInt 所能表示的最大值。如果对这个值加`1n`，`BigInt.asIntN()`将会返回一个负值，因为这时新增的一位将被解释为符号位。而`BigInt.asUintN()`方法由于不存在符号位，所以可以正确返回结果。
+上面代码中，`max`是 64 位带符号的 BigInt 所能表示的最大值。如果对这个值加`1n`，`BigInt.asIntN()`将会返回一个负值，因为这时新增的一位将被解释为符号位。而`BigInt.asUintN()`方法由于不存在符号位，所以可以正确返回结果。
 
 如果`BigInt.asIntN()`和`BigInt.asUintN()`指定的位数，小于数值本身的位数，那么头部的位将被舍弃。
 
@@ -897,7 +897,7 @@ BigInt.asIntN(32, max) // -1n
 BigInt.asUintN(32, max) // 4294967295n
 ```
 
-上面代码中，`max`是一个64位的 BigInt，如果转为32位，前面的32位都会被舍弃。
+上面代码中，`max`是一个 64 位的 BigInt，如果转为 32 位，前面的 32 位都会被舍弃。
 
 下面是`BigInt.parseInt()`的例子。
 
@@ -911,7 +911,7 @@ BigInt.parseInt('9007199254740993', 10)
 
 上面代码中，由于有效数字超出了最大限度，`Number.parseInt`方法返回的结果是不精确的，而`BigInt.parseInt`方法正确返回了对应的 BigInt。
 
-对于二进制数组，BigInt 新增了两个类型`BigUint64Array`和`BigInt64Array`，这两种数据类型返回的都是64位 BigInt。`DataView`对象的实例方法`DataView.prototype.getBigInt64()`和`DataView.prototype.getBigUint64()`，返回的也是 BigInt。
+对于二进制数组，BigInt 新增了两个类型`BigUint64Array`和`BigInt64Array`，这两种数据类型返回的都是 64 位 BigInt。`DataView`对象的实例方法`DataView.prototype.getBigInt64()`和`DataView.prototype.getBigUint64()`，返回的也是 BigInt。
 
 ### 转换规则
 
@@ -969,7 +969,7 @@ Math.sqrt(Number(4n)) // 2
 
 上面代码中，`Math.sqrt`的参数预期是 Number 类型，如果是 BigInt 就会报错，必须先用`Number`方法转一下类型，才能进行计算。
 
-asm.js 里面，`|0`跟在一个数值的后面会返回一个32位整数。根据不能与 Number 类型混合运算的规则，BigInt 如果与`|0`进行运算会报错。
+asm.js 里面，`|0`跟在一个数值的后面会返回一个 32 位整数。根据不能与 Number 类型混合运算的规则，BigInt 如果与`|0`进行运算会报错。
 
 ```javascript
 1n | 0 // 报错
