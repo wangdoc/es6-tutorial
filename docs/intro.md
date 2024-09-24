@@ -260,5 +260,4 @@ Babel 也可以用于浏览器环境，使用 [@babel/standalone](https://babelj
 
 注意，网页实时将 ES6 代码转为 ES5，对性能会有影响。生产环境需要加载已经转码完成的脚本。
 
-
 Babel 提供一个 [REPL 在线编译器](https://babeljs.io/repl/)，可以在线将 ES6 代码转为 ES5 代码。转换后的代码，可以直接作为 ES5 代码插入网页运行。
