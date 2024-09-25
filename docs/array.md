@@ -78,14 +78,14 @@ console.log(...[1, 2])
 由于扩展运算符可以展开数组，所以不再需要`apply()`方法将数组转为函数的参数了。
 
 ```javascript
-// ES5 的写法
+// ES5的写法
 function f(x, y, z) {
   // ...
 }
 var args = [0, 1, 2];
 f.apply(null, args);
 
-// ES6 的写法
+// ES6的写法
 function f(x, y, z) {
   // ...
 }
@@ -96,10 +96,10 @@ f(...args);
 下面是扩展运算符取代`apply()`方法的一个实际的例子，应用`Math.max()`方法，简化求出一个数组最大元素的写法。
 
 ```javascript
-// ES5 的写法
+// ES5的写法
 Math.max.apply(null, [14, 3, 77])
 
-// ES6 的写法
+// ES6的写法
 Math.max(...[14, 3, 77])
 
 // 等同于
@@ -111,18 +111,18 @@ Math.max(14, 3, 77);
 另一个例子是通过`push()`函数，将一个数组添加到另一个数组的尾部。
 
 ```javascript
-// ES5 的写法
+// ES5的写法
 var arr1 = [0, 1, 2];
 var arr2 = [3, 4, 5];
 Array.prototype.push.apply(arr1, arr2);
 
-// ES6 的写法
+// ES6的写法
 let arr1 = [0, 1, 2];
 let arr2 = [3, 4, 5];
 arr1.push(...arr2);
 ```
 
-上面代码的 ES5 写法中，`push()`方法的参数不能是数组，所以只好通过`apply()`方法变通使用`push()`方法。有了扩展运算符，就可以直接将数组传入`push()`方法。
+上面代码的 ES5写法中，`push()`方法的参数不能是数组，所以只好通过`apply()`方法变通使用`push()`方法。有了扩展运算符，就可以直接将数组传入`push()`方法。
 
 下面是另外一个例子。
 
@@ -150,7 +150,7 @@ a1 // [2, 2]
 
 上面代码中，`a2`并不是`a1`的克隆，而是指向同一份数据的另一个指针。修改`a2`，会直接导致`a1`的变化。
 
-ES5 只能用变通方法来复制数组。
+ES5只能用变通方法来复制数组。
 
 ```javascript
 const a1 = [1, 2];
@@ -183,11 +183,11 @@ const arr1 = ['a', 'b'];
 const arr2 = ['c'];
 const arr3 = ['d', 'e'];
 
-// ES5 的合并数组
+// ES5的合并数组
 arr1.concat(arr2, arr3);
 // [ 'a', 'b', 'c', 'd', 'e' ]
 
-// ES6 的合并数组
+// ES6的合并数组
 [...arr1, ...arr2, ...arr3]
 // [ 'a', 'b', 'c', 'd', 'e' ]
 ```
@@ -261,7 +261,7 @@ const [first, ...middle, last] = [1, 2, 3, 4, 5];
 [...'x\uD83D\uDE80y'].length // 3
 ```
 
-上面代码的第一种写法，JavaScript 会将四个字节的 Unicode 字符，识别为 2 个字符，采用扩展运算符就没有这个问题。因此，正确返回字符串长度的函数，可以像下面这样写。
+上面代码的第一种写法，JavaScript 会将四个字节的 Unicode 字符，识别为2个字符，采用扩展运算符就没有这个问题。因此，正确返回字符串长度的函数，可以像下面这样写。
 
 ```javascript
 function length(str) {
@@ -363,7 +363,7 @@ let arr = [...obj]; // TypeError: Cannot spread non-iterable object
 
 ## Array.from()
 
-`Array.from()`方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6 新增的数据结构 Set 和 Map）。
+`Array.from()`方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6新增的数据结构 Set 和 Map）。
 
 下面是一个类似数组的对象，`Array.from()`将它转为真正的数组。
 
@@ -375,10 +375,10 @@ let arrayLike = {
     length: 3
 };
 
-// ES5 的写法
+// ES5的写法
 var arr1 = [].slice.call(arrayLike); // ['a', 'b', 'c']
 
-// ES6 的写法
+// ES6的写法
 let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
 ```
 
@@ -525,7 +525,7 @@ Array(3) // [, , ,]
 Array(3, 11, 8) // [3, 11, 8]
 ```
 
-上面代码中，`Array()`方法没有参数、一个参数、三个参数时，返回的结果都不一样。只有当参数个数不少于 2 个时，`Array()`才会返回由参数组成的新数组。参数只有一个正整数时，实际上是指定数组的长度。
+上面代码中，`Array()`方法没有参数、一个参数、三个参数时，返回的结果都不一样。只有当参数个数不少于2个时，`Array()`才会返回由参数组成的新数组。参数只有一个正整数时，实际上是指定数组的长度。
 
 `Array.of()`基本上可以用来替代`Array()`或`new Array()`，并且不存在由于参数不同而导致的重载。它的行为非常统一。
 
@@ -557,7 +557,7 @@ Array.prototype.copyWithin(target, start = 0, end = this.length)
 它接受三个参数。
 
 - target（必需）：从该位置开始替换数据。如果为负值，表示倒数。
-- start（可选）：从该位置开始读取数据，默认为 0。如果为负值，表示从末尾开始计算。
+- start（可选）：从该位置开始读取数据，默认为0。如果为负值，表示从末尾开始计算。
 - end（可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示从末尾开始计算。
 
 这三个参数都应该是数值，如果不是，会自动转为数值。
@@ -567,24 +567,24 @@ Array.prototype.copyWithin(target, start = 0, end = this.length)
 // [4, 5, 3, 4, 5]
 ```
 
-上面代码表示将从 3 号位直到数组结束的成员（4 和 5），复制到从 0 号位开始的位置，结果覆盖了原来的 1 和 2。
+上面代码表示将从3号位直到数组结束的成员（4和5），复制到从0号位开始的位置，结果覆盖了原来的1和2。
 
 下面是更多例子。
 
 ```javascript
-// 将 3 号位复制到 0 号位
+// 将3号位复制到0号位
 [1, 2, 3, 4, 5].copyWithin(0, 3, 4)
 // [4, 2, 3, 4, 5]
 
-// -2 相当于 3 号位，-1 相当于 4 号位
+// -2相当于3号位，-1相当于4号位
 [1, 2, 3, 4, 5].copyWithin(0, -2, -1)
 // [4, 2, 3, 4, 5]
 
-// 将 3 号位复制到 0 号位
+// 将3号位复制到0号位
 [].copyWithin.call({length: 5, 3: 1}, 0, 3)
 // {0: 1, 3: 1, length: 5}
 
-// 将 2 号位到数组结束，复制到 0 号位
+// 将2号位到数组结束，复制到0号位
 let i32a = new Int32Array([1, 2, 3, 4, 5]);
 i32a.copyWithin(0, 2);
 // Int32Array [3, 4, 5, 4, 5]
@@ -604,7 +604,7 @@ i32a.copyWithin(0, 2);
 // -5
 ```
 
-上面代码找出数组中第一个小于 0 的成员。
+上面代码找出数组中第一个小于0的成员。
 
 ```javascript
 [1, 5, 10, 15].find(function(value, index, arr) {
@@ -646,7 +646,7 @@ let person = {name: 'John', age: 20};
 
 上面代码中，`indexOf()`方法无法识别数组的`NaN`成员，但是`findIndex()`方法可以借助`Object.is()`方法做到。
 
-`find()`和`findIndex()`都是从数组的 0 号位，依次向后检查。[ES2022](https://github.com/tc39/proposal-array-find-from-last) 新增了两个方法`findLast()`和`findLastIndex()`，从数组的最后一个成员开始，依次向前检查，其他都保持不变。
+`find()`和`findIndex()`都是从数组的0号位，依次向后检查。[ES2022](https://github.com/tc39/proposal-array-find-from-last) 新增了两个方法`findLast()`和`findLastIndex()`，从数组的最后一个成员开始，依次向前检查，其他都保持不变。
 
 ```javascript
 const array = [
@@ -660,7 +660,7 @@ array.findLast(n => n.value % 2 === 1); // { value: 3 }
 array.findLastIndex(n => n.value % 2 === 1); // 2
 ```
 
-上面示例中，`findLast()`和`findLastIndex()`从数组结尾开始，寻找第一个`value`属性为奇数的成员。结果，该成员是`{ value: 3 }`，位置是 2 号位。
+上面示例中，`findLast()`和`findLastIndex()`从数组结尾开始，寻找第一个`value`属性为奇数的成员。结果，该成员是`{ value: 3 }`，位置是2号位。
 
 ## 实例方法：fill()
 
@@ -683,7 +683,7 @@ new Array(3).fill(7)
 // ['a', 7, 'c']
 ```
 
-上面代码表示，`fill`方法从 1 号位开始，向原数组填充 7，到 2 号位之前结束。
+上面代码表示，`fill`方法从1号位开始，向原数组填充7，到2号位之前结束。
 
 注意，如果填充的类型为对象，那么被赋值的是同一个内存地址的对象，而不是深拷贝对象。
 
@@ -701,7 +701,7 @@ arr
 
 ## 实例方法：entries()，keys() 和 values()
 
-ES6 提供三个新的方法——`entries()`，`keys()`和`values()`——用于遍历数组。它们都返回一个遍历器对象（详见《Iterator》一章），可以用`for...of`循环进行遍历，唯一的区别是`keys()`是对键名的遍历、`values()`是对键值的遍历，`entries()`是对键值对的遍历。
+ES6提供三个新的方法——`entries()`，`keys()`和`values()`——用于遍历数组。它们都返回一个遍历器对象（详见《Iterator》一章），可以用`for...of`循环进行遍历，唯一的区别是`keys()`是对键名的遍历、`values()`是对键值的遍历，`entries()`是对键值对的遍历。
 
 ```javascript
 for (let index of ['a', 'b'].keys()) {
@@ -735,7 +735,7 @@ console.log(entries.next().value); // [2, 'c']
 
 ## 实例方法：includes()
 
-`Array.prototype.includes`方法返回一个布尔值，表示某个数组是否包含给定的值，与字符串的`includes`方法类似。ES2016 引入了该方法。
+`Array.prototype.includes`方法返回一个布尔值，表示某个数组是否包含给定的值，与字符串的`includes`方法类似。ES2016引入了该方法。
 
 ```javascript
 [1, 2, 3].includes(2)     // true
@@ -799,7 +799,7 @@ contains(['foo', 'bar'], 'baz'); // => false
 
 上面代码中，原数组的成员里面有一个数组，`flat()`方法将子数组的成员取出来，添加在原来的位置。
 
-`flat()`默认只会“拉平”一层，如果想要“拉平”多层的嵌套数组，可以将`flat()`方法的参数写成一个整数，表示想要拉平的层数，默认为 1。
+`flat()`默认只会“拉平”一层，如果想要“拉平”多层的嵌套数组，可以将`flat()`方法的参数写成一个整数，表示想要拉平的层数，默认为1。
 
 ```javascript
 [1, 2, [3, [4, 5]]].flat()
@@ -809,7 +809,7 @@ contains(['foo', 'bar'], 'baz'); // => false
 // [1, 2, 3, 4, 5]
 ```
 
-上面代码中，`flat()`的参数为 2，表示要“拉平”两层的嵌套数组。
+上面代码中，`flat()`的参数为2，表示要“拉平”两层的嵌套数组。
 
 如果不管有多少层嵌套，都要转成一维数组，可以用`Infinity`关键字作为参数。
 
@@ -972,7 +972,7 @@ array.groupToMap((num, index, array) => {
 Array(3) // [, , ,]
 ```
 
-上面代码中，`Array(3)`返回一个具有 3 个空位的数组。
+上面代码中，`Array(3)`返回一个具有3个空位的数组。
 
 注意，空位不是`undefined`，某一个位置的值等于`undefined`，依然是有值的。空位是没有任何值，`in`运算符可以说明这一点。
 
@@ -981,9 +981,9 @@ Array(3) // [, , ,]
 0 in [, , ,] // false
 ```
 
-上面代码说明，第一个数组的 0 号位置是有值的，第二个数组的 0 号位置没有值。
+上面代码说明，第一个数组的0号位置是有值的，第二个数组的0号位置没有值。
 
-ES5 对空位的处理，已经很不一致了，大多数情况下会忽略空位。
+ES5对空位的处理，已经很不一致了，大多数情况下会忽略空位。
 
 - `forEach()`, `filter()`, `reduce()`, `every()` 和`some()`都会跳过空位。
 - `map()`会跳过空位，但会保留这个值
@@ -1015,7 +1015,7 @@ ES5 对空位的处理，已经很不一致了，大多数情况下会忽略空�
 [,'a',undefined,null].toString() // ",a,,"
 ```
 
-ES6 则是明确将空位转为`undefined`。
+ES6则是明确将空位转为`undefined`。
 
 `Array.from()`方法会将数组的空位，转为`undefined`，也就是说，这个方法不会忽略空位。
 
