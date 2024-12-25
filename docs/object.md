@@ -783,7 +783,7 @@ actual.cause; // 'Error cause'
 
 上面示例中，生成 Error 实例时，使用描述对象给出`cause`属性，写入报错的原因。然后，就可以从实例对象上读取这个属性。
 
-`casue`属性可以放置任意内容，不必一定是字符串。
+`cause`属性可以放置任意内容，不必一定是字符串。
 
 ```javascript
 try {
