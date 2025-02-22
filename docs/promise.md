@@ -79,7 +79,7 @@ let promise = new Promise(function(resolve, reject) {
 });
 
 promise.then(function() {
-  console.log('resolved.');
+  console.log('resolved');
 });
 
 console.log('Hi!');
