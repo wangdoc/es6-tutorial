@@ -184,7 +184,7 @@
 
 ## 异步操作和 Async 函数
 
-- Luke Hoban, [Async Functions for ECMAScript](https://github.com/lukehoban/ecmascript-asyncawait): Async 函数的设计思想，与 Promise、Gernerator 函数的关系
+- Luke Hoban, [Async Functions for ECMAScript](https://github.com/lukehoban/ecmascript-asyncawait): Async 函数的设计思想，与 Promise、Generator 函数的关系
 - Jafar Husain, [Asynchronous Generators for ES7](https://github.com/jhusain/asyncgenerator): Async 函数的深入讨论
 - Nolan Lawson, [Taming the asynchronous beast with ES7](http://pouchdb.com/2015/03/05/taming-the-async-beast-with-es7.html): async 函数通俗的实例讲解
 - Jafar Husain, [Async Generators](https://docs.google.com/file/d/0B4PVbLpUIdzoMDR5dWstRllXblU/view?sle=true): 对 async 与 Generator 混合使用的一些讨论
