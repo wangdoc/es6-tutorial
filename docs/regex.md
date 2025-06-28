@@ -800,3 +800,36 @@ function replacePlainText(str, searchText, replace) {
 
 上面示例中，RegExp.escape() 先对用户输入的关键词进行转义，然后就可以将其当作正则表达式处理。
 
+## 组匹配修饰符
+
+ES2025 为组匹配添加了修饰符（inline flags），即修饰符只对正则表达式的一部分生效，对其他部分不生效。
+
+目前，组匹配只能使用下面三个修饰符。
+
+- i：忽略大小写
+- m：多行模式，即 ^ 和 $ 对每一行都生效。
+- s：dotAll 模式，即 . 可以匹配任何字符，包含每一行的终止符。
+
+```javascript
+/^x(?i:HELLO)x$/.test('xHELLOx')
+// true
+
+/^x(?i:HELLO)x$/.test('xhellox')
+// true
+```
+
+上面示例中，`(?i:HELLO)`表示 i 修饰符只用于组匹配`(HELLO)`，即`HELLO`不区分大小写。
+
+`(?flag:pattern)`是打开组匹配修饰符的写法，而`(?-flat:pattern)`是关闭组匹配修饰符的写法。
+
+```javascript
+/^x(?-i:HELLO)x$/i.test('xHELLOx')
+// true
+```
+
+上面示例中，整个正则表达式带有 i 修饰符，表示区分大小写，但是其中有一部分不需要区分，可以就可以使用`(?-i:HELLO)`对 HELLO 关闭区分大小写。
+
+如果需要对组匹配打开某些修饰符，同时关闭另一些修饰符，可以写成`(?flag-flag:pattern)`。同一个修饰符不能既打开，同时又关闭。
+
+另外，如果不带有修复符，那么`(?:pattern)`就是非捕获组匹配。
+
