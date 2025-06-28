@@ -818,3 +818,43 @@ for (var n of fibonacci) {
 ```
 
 上面的例子，会输出斐波纳契数列小于等于 1000 的项。如果当前项大于 1000，就会使用`break`语句跳出`for...of`循环。
+
+## 遍历器对象的工具方法
+
+ES2025 为遍历器接口返回的遍历器对象，添加了一些工具方法，便于处理数据。
+
+```javascript
+const arr = ['a', '', 'b', '', 'c', '', 'd', '', 'e'];
+
+arr.values() // creates an iterator
+  .filter(x => x.length > 0)
+  .drop(1)
+  .take(3)
+  .map(x => `=${x}=`)
+  .toArray()
+// ['=b=', '=c=', '=d=']
+```
+
+上面示例中，arr 是一个数组，它的 values() 方法返回的是一个遍历器对象，以前要使用 for...of 循环来处理，现在有了工具方法，就可以直接链式处理了。
+
+遍历器对象的工具方法，基本上与数组方法是对应的。
+
+- 返回遍历器对象的方法
+  - iterator.filter(filterFn)
+  - iterator.map(mapFn)
+  - iterator.flatMap(mapFn)
+- 返回布尔值的方法
+  - iterator.some(fn)
+  - iterator.every(fn)
+- 返回其他值的方法
+  - iterator.find(fn)
+  - iterator.reduce(reducer, initialValue?)
+- 不返回值的方法
+  - iterator.forEach(fn)
+
+以下是遍历器对象独有的方法。
+
+- iterator.drop(limit)：返回一个遍历器对象，丢弃前 limit 个成员。
+- iterator.take(limit)：返回一个遍历器对象，包含前 limit 个成员。
+- iterator.toArray()：返回一个数组，包含所有成员。
+
