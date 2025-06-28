@@ -16,7 +16,7 @@
 
 简单说，`ArrayBuffer`对象代表原始的二进制数据，`TypedArray`视图用来读写简单类型的二进制数据，`DataView`视图用来读写复杂类型的二进制数据。
 
-`TypedArray`视图支持的数据类型一共有 9 种（`DataView`视图支持除`Uint8C`以外的其他 8 种）。
+`TypedArray`视图支持的数据类型一共有12种。
 
 | 数据类型 | 字节长度 | 含义                             | 对应的 C 语言类型 |
 | -------- | -------- | -------------------------------- | ----------------- |
@@ -27,6 +27,9 @@
 | Uint16   | 2        | 16 位不带符号整数                | unsigned short    |
 | Int32    | 4        | 32 位带符号整数                  | int               |
 | Uint32   | 4        | 32 位不带符号的整数              | unsigned int      |
+| BigInt64 | 8        | 64 位有符号整数                  |   |
+| BigUint64 | 8       | 64 位无符号整数                  |   |
+| Float16  | 2        | 16 位浮点数                      |   |
 | Float32  | 4        | 32 位浮点数                      | float             |
 | Float64  | 8        | 64 位浮点数                      | double            |
 
@@ -153,10 +156,13 @@ ArrayBuffer.isView(v) // true
 - **`Uint16Array`**：16 位无符号整数，长度 2 个字节。
 - **`Int32Array`**：32 位有符号整数，长度 4 个字节。
 - **`Uint32Array`**：32 位无符号整数，长度 4 个字节。
+- **`BigInt64Array`**: 64 位有符号整数，长度 8 个字节。
+- **`BigUint64Array`**：64 位无符号整数，长度 8 个字节。
+- **`Float16Array`**: 16 位浮点数，长度 2 个字节。
 - **`Float32Array`**：32 位浮点数，长度 4 个字节。
 - **`Float64Array`**：64 位浮点数，长度 8 个字节。
 
-这 9 个构造函数生成的数组，统称为`TypedArray`视图。它们很像普通数组，都有`length`属性，都能用方括号运算符（`[]`）获取单个元素，所有数组的方法，在它们上面都能使用。普通数组与 TypedArray 数组的差异主要在以下方面。
+这12个构造函数生成的数组，统称为`TypedArray`视图。它们很像普通数组，都有`length`属性，都能用方括号运算符（`[]`）获取单个元素，所有数组的方法，在它们上面都能使用。普通数组与 TypedArray 数组的差异主要在以下方面。
 
 - TypedArray 数组的所有成员，都是同一种类型。
 - TypedArray 数组的成员是连续的，不会有空位。
@@ -165,7 +171,7 @@ ArrayBuffer.isView(v) // true
 
 ### 构造函数
 
-TypedArray 数组提供 9 种构造函数，用来生成相应类型的数组实例。
+TypedArray 数组提供12种构造函数，用来生成相应类型的数组实例。
 
 构造函数有多种用法。
 
@@ -746,7 +752,7 @@ const dv = new DataView(buffer);
 - `DataView.prototype.byteLength`：返回占据的内存字节长度
 - `DataView.prototype.byteOffset`：返回当前视图从对应的 ArrayBuffer 对象的哪个字节开始
 
-`DataView`实例提供10个方法读取内存。
+`DataView`实例提供11个方法读取内存。
 
 - **`getInt8`**：读取 1 个字节，返回一个 8 位整数。
 - **`getUint8`**：读取 1 个字节，返回一个无符号的 8 位整数。
@@ -756,6 +762,7 @@ const dv = new DataView(buffer);
 - **`getUint32`**：读取 4 个字节，返回一个无符号的 32 位整数。
 - **`getBigInt64`**：读取 8 个字节，返回一个 64 位整数。
 - **`getBigUint64`**：读取 8 个字节，返回一个无符号的 64 位整数。
+- **`getFloat16`**：读取 2 个字节，返回一个 16 位浮点数。
 - **`getFloat32`**：读取 4 个字节，返回一个 32 位浮点数。
 - **`getFloat64`**：读取 8 个字节，返回一个 64 位浮点数。
 
@@ -790,7 +797,7 @@ const v2 = dv.getUint16(3, false);
 const v3 = dv.getUint16(3);
 ```
 
-DataView 视图提供10个方法写入内存。
+DataView 视图提供11个方法写入内存。
 
 - **`setInt8`**：写入 1 个字节的 8 位整数。
 - **`setUint8`**：写入 1 个字节的 8 位无符号整数。
@@ -800,6 +807,7 @@ DataView 视图提供10个方法写入内存。
 - **`setUint32`**：写入 4 个字节的 32 位无符号整数。
 - **`setBigInt64`**：写入 8 个字节的 64 位整数。
 - **`setBigUint64`**：写入 8 个字节的 64 位无符号整数。
+- **`setFloat16`**：写入 2 个字节的 16 位浮点数。
 - **`setFloat32`**：写入 4 个字节的 32 位浮点数。
 - **`setFloat64`**：写入 8 个字节的 64 位浮点数。
 

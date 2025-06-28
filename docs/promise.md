@@ -1082,7 +1082,7 @@ console.log('next');
 
 上面代码也是使用立即执行的匿名函数，执行`new Promise()`。这种情况下，同步函数也是同步执行的。
 
-鉴于这是一个很常见的需求，所以现在有一个[提案](https://github.com/ljharb/proposal-promise-try)，提供`Promise.try`方法替代上面的写法。
+鉴于这是一个很常见的需求，所以 [ES2025](https://github.com/ljharb/proposal-promise-try) 提供了`Promise.try()`方法替代上面的写法。
 
 ```javascript
 const f = () => console.log('now');
