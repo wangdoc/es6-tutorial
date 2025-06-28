@@ -766,3 +766,37 @@ for (const match of string.matchAll(regex)) {
 Array.from(string.matchAll(regex))
 ```
 
+## RegExp.escape()
+
+ES2025 添加了 RegExp.escape() 方法，它用来对字符串转义，使其可以安全地用于正则表达式。
+
+```javascript
+RegExp.escape('(*)')
+// '\\(\\*\\)'
+```
+
+上面示例中，原始字符串的三个字符`(`、`*`、`)`在正则表达式都有特殊含义，RegExp.escape() 可以对它们进行转义。
+
+注意，转义以后，每个特殊字符之前都加上了两个反斜杠。这是因为当该字符串用于正则表达式，字符串的转义机制会将两个反斜杠先转义成一个反斜杆，即`\\(`变成`\(`，从而正好用于正则表达式。
+
+没有特殊含义的字符，不会被转义。
+
+```javascript
+RegExp.escape('_abc123')
+// '_abc123'
+```
+
+该方法的经典用途是搜索和替换文本。
+
+```javascript
+function replacePlainText(str, searchText, replace) {
+  const searchRegExp = new RegExp(
+    RegExp.escape(searchText),
+    'gu'
+  );
+  return str.replace(searchRegExp, replace)
+}
+```
+
+上面示例中，RegExp.escape() 先对用户输入的关键词进行转义，然后就可以将其当作正则表达式处理。
+
