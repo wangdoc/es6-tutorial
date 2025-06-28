@@ -576,6 +576,13 @@ const configData = await import(
 
 上面代码中，import 命令使用 with 子句，指定一个属性对象。这个属性对象目前只有一个 type 属性，它的值就是导入代码的类型，现在只能设置为`json`一个值。
 
+如果没有 import 属性，导入 JSON 数据只能使用 fetch 命令。
+
+```javascript
+const response = await fetch('./config.json');
+const json = await response.json();
+```
+
 export 命令与 import 命令写在一起，形成一个再导出语句时，也可以使用 import 属性。
 
 ```javascript
@@ -584,7 +591,7 @@ export { default as config } from './config-data.json' with { type: 'json' };
 
 ## 模块的继承
 
-模块之间也可以继承。
+模块可以继承。
 
 假设有一个`circleplus`模块，继承了`circle`模块。
 
