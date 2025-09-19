@@ -839,7 +839,7 @@ class C {
       // 私有属性 #brand 存在
       return true;
     } else {
-      // 私有属性 #foo 不存在
+      // 私有属性 #brand 不存在
       return false;
     }
   }
